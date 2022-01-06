@@ -7,19 +7,19 @@ import androidx.room.PrimaryKey;
 @Entity
 public class KindEvaluationModel {
 
-    @PrimaryKey
-    public int uid;
+    @PrimaryKey(autoGenerate = true)
+    public int kind_evaluation_id;
 
-    @ColumnInfo (name = "name")
-    public String name;
+    @ColumnInfo (name = "evaluation_name")
+    public String evaluationName;
 
-    @ColumnInfo (name = "kind")
-    public String kind;
+    @ColumnInfo (name = "evaluation_kind")
+    public String evaluationKind;
 
-    @ColumnInfo (name = "max_value")
-    public float maxValue;
+    @ColumnInfo (name = "evaluation_max_value")
+    public float evaluationMaxValue;
 
-    @ColumnInfo (name = "min_value")
-    public float minValue;
+    @ColumnInfo (name = "evaluation_min_value")
+    public float evaluationMinValue;
 
 }

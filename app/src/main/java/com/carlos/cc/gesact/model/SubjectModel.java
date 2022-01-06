@@ -7,13 +7,13 @@ import androidx.room.PrimaryKey;
 @Entity
 public class SubjectModel {
 
-    @PrimaryKey
-    public int uid;
+    @PrimaryKey(autoGenerate = true)
+    public int subject_id;
 
-    @ColumnInfo(name = "name")
-    public String name;
+    @ColumnInfo(name = "subject_name")
+    public String subjectName;
 
-    @ColumnInfo (name = "kind")
-    public String kind;
+    @ColumnInfo (name = "subject_kind")
+    public String subjectKind;
 
 }

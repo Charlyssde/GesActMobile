@@ -8,14 +8,14 @@ import androidx.room.PrimaryKey;
 @Entity
 public class ActivityModel {
 
-    @PrimaryKey
-    public int uid;
+    @PrimaryKey(autoGenerate = true)
+    public int activity_id;
 
-    @ColumnInfo (name = "name")
-    public String name;
+    @ColumnInfo (name = "activity_name")
+    public String activityName;
 
-    @ColumnInfo (name = "description")
-    public String description;
+    @ColumnInfo (name = "activity_description")
+    public String activityDescription;
 
     @Embedded public KindEvaluationModel kindEvaluationModel;
 

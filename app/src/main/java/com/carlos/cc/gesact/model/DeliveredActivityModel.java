@@ -10,15 +10,15 @@ import java.util.Date;
 @Entity
 public class DeliveredActivityModel {
 
-    @PrimaryKey
-    public int uid;
+    @PrimaryKey(autoGenerate = true)
+    public int delivered_id;
 
     @Embedded StudentModel studentModel;
 
     @Embedded ActivityModel activityModel;
 
     @ColumnInfo (name = "date_delivered")
-    public Date dateDelivered;
+    public String dateDelivered;
 
     @ColumnInfo (name = "final_grade")
     public float finalGrade;

@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey;
 @Entity
 public class UserModel {
 
-    @PrimaryKey
-    public int uid;
+    @PrimaryKey(autoGenerate = true)
+    public int user_id;
 
     @ColumnInfo(name = "first_name")
     public String firstName;

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">GesAct</string>
+    <string name="register"><u>¿Primera vez? Regístrate</u></string>
+    <string name="name">Nombre(s)</string>
+    <string name="last_name">Apellidos</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="cancel">Cancelar</string>
+    <string name="registrar">Registrar</string>
 </resources>

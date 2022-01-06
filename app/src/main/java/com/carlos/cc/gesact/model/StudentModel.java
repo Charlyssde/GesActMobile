@@ -7,16 +7,33 @@ import androidx.room.PrimaryKey;
 @Entity
 public class StudentModel {
 
-    @PrimaryKey
-    public int uid;
+    @PrimaryKey (autoGenerate = true)
+    public int student_id;
 
-    @ColumnInfo(name = "name")
-    public String name;
+    @ColumnInfo(name = "student_name")
+    public String studentName;
 
-    @ColumnInfo (name = "last_name")
-    public String lastName;
+    @ColumnInfo (name = "student_last_name")
+    public String studentLastName;
 
-    @ColumnInfo (name = "surname")
-    public String surname;
+    @ColumnInfo (name = "student_surname")
+    public String studentSurname;
 
+    @ColumnInfo (name = "student_group")
+    public String studentGroup;
+
+    @ColumnInfo (name = "student_grade")
+    public String studentGrade;
+
+    @Override
+    public String toString() {
+        return "StudentModel{" +
+                "student_id=" + student_id +
+                ", studentName='" + studentName + '\'' +
+                ", studentLastName='" + studentLastName + '\'' +
+                ", studentSurname='" + studentSurname + '\'' +
+                ", studentGroup='" + studentGroup + '\'' +
+                ", studentGrade='" + studentGrade + '\'' +
+                '}';
+    }
 }
