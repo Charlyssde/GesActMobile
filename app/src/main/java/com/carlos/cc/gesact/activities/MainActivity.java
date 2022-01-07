@@ -8,33 +8,46 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.carlos.cc.gesact.R;
 import com.carlos.cc.gesact.database.AppDatabase;
 import com.carlos.cc.gesact.model.StudentModel;
-import com.carlos.cc.gesact.model.UserModel;
+import com.carlos.cc.gesact.services.Env;
+import com.carlos.cc.gesact.services.PreferencesService;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView register;
+    private MaterialButton btnLogin;
+    private EditText userName;
+    PreferencesService preferencesService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
+        preferencesService = PreferencesService.getInstance(MainActivity.this);
 
-        register = findViewById(R.id.tv_register);
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
+        if(preferencesService.getProperty(Env.USER_NAME).equals("")){
+            userName = findViewById(R.id.input_user_name);
+            btnLogin = findViewById(R.id.btn_login);
+            btnLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!userName.getText().toString().equals("")){
+                        preferencesService.setProperty(Env.USER_NAME, userName.getText().toString());
+                        goToDashboard();
+                    }
+                }
+            });
+        }else{
+            goToDashboard();
+        }
 
 //        AsyncTask.execute(new Runnable() {
 //            @Override
@@ -62,5 +75,12 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
+    }
+
+    private void goToDashboard() {
+        Toast.makeText(MainActivity.this, "Accediendo", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, Dashboard.class);
+        startActivity(intent);
+        finish();
     }
 }

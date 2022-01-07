@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_option_groups"
+            android:icon="@drawable/ic_groups"
+            android:title="@string/my_groups" />
+
+        <item
+            android:id="@+id/menu_option_grades"
+            android:icon="@drawable/ic_grades"
+            android:title="@string/calificaciones" />
+
+        <item
+            android:id="@+id/menu_option_students"
+            android:icon="@drawable/ic_students"
+            android:title="@string/alumnos" />
+
+    </group>
+
+</menu>

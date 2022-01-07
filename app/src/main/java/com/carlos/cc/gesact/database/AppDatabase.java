@@ -7,21 +7,18 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.carlos.cc.gesact.dao.StudentDao;
-import com.carlos.cc.gesact.dao.UserDao;
-import com.carlos.cc.gesact.model.ActivityModel;
-import com.carlos.cc.gesact.model.DeliveredActivityModel;
-import com.carlos.cc.gesact.model.KindEvaluationModel;
+import com.carlos.cc.gesact.model.CriterionModel;
+import com.carlos.cc.gesact.model.EvidenceModel;
+import com.carlos.cc.gesact.model.GroupModel;
 import com.carlos.cc.gesact.model.StudentModel;
 import com.carlos.cc.gesact.model.SubjectModel;
-import com.carlos.cc.gesact.model.UserModel;
 
 @Database(entities = {
-        UserModel.class,
         StudentModel.class,
-        ActivityModel.class,
-        DeliveredActivityModel.class,
-        SubjectModel.class,
-        KindEvaluationModel.class}, version = 2)
+        GroupModel.class,
+        CriterionModel.class,
+        EvidenceModel.class,
+        SubjectModel.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "GesAct.db";
@@ -43,7 +40,6 @@ public abstract class AppDatabase extends RoomDatabase {
                 DB_NAME).fallbackToDestructiveMigration().build();
     }
 
-    public abstract UserDao userDao();
     public abstract StudentDao studentDao();
 
 }

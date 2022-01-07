@@ -1,6 +1,7 @@
 package com.carlos.cc.gesact.model;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -19,11 +20,14 @@ public class StudentModel {
     @ColumnInfo (name = "student_surname")
     public String studentSurname;
 
-    @ColumnInfo (name = "student_group")
-    public String studentGroup;
+    @ColumnInfo (name = "student_birthday")
+    public String studentBirthday;
 
-    @ColumnInfo (name = "student_grade")
-    public String studentGrade;
+    @ColumnInfo (name = "student_contact")
+    public String studentContact;
+
+    @Embedded(prefix = "student")
+    public GroupModel GroupModel;
 
     @Override
     public String toString() {
@@ -32,8 +36,6 @@ public class StudentModel {
                 ", studentName='" + studentName + '\'' +
                 ", studentLastName='" + studentLastName + '\'' +
                 ", studentSurname='" + studentSurname + '\'' +
-                ", studentGroup='" + studentGroup + '\'' +
-                ", studentGrade='" + studentGrade + '\'' +
                 '}';
     }
 }

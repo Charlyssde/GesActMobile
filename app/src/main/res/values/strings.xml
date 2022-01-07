@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">GesAct</string>
-    <string name="register"><u>¿Primera vez? Regístrate</u></string>
+    <string name="register"><u>Ingresa tu nombre, sólo lo harás una vez y no tendrás que iniciar sesión nuevamente. Todos tus datos se guardarán hasta que desinstales la aplicación.</u></string>
     <string name="name">Nombre(s)</string>
     <string name="last_name">Apellidos</string>
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="cancel">Cancelar</string>
     <string name="registrar">Registrar</string>
+    <string name="navigation_drawer_open"> open</string>
+    <string name="navigation_drawer_close"> close</string>
+    <string name="copyright">GesAct® by Carlos Carrillo</string>
+    <string name="my_groups">Mis grupos</string>
+    <string name="calificaciones">Calificaciones</string>
+    <string name="alumnos">Alumnos</string>
 </resources>
