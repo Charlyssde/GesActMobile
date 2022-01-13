@@ -4,20 +4,31 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/menu_option_groups"
-            android:icon="@drawable/ic_groups"
-            android:title="@string/my_groups" />
-
-        <item
-            android:id="@+id/menu_option_grades"
-            android:icon="@drawable/ic_grades"
-            android:title="@string/calificaciones" />
-
-        <item
             android:id="@+id/menu_option_students"
             android:icon="@drawable/ic_students"
             android:title="@string/alumnos" />
 
     </group>
+    <item android:title="@string/registros">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_option_groups"
+                    android:icon="@drawable/ic_groups"
+                    android:title="@string/my_groups" />
+
+                <item
+                    android:id="@+id/menu_option_subjects"
+                    android:icon="@drawable/ic_subject"
+                    android:title="@string/subjects" />
+
+
+                <item
+                    android:id="@+id/menu_option_criterions"
+                    android:icon="@drawable/ic_criterions"
+                    android:title="@string/criterions" />
+            </group>
+        </menu>
+    </item>
 
 </menu>

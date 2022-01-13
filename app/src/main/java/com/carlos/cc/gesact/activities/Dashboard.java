@@ -15,7 +15,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.carlos.cc.gesact.R;
+import com.carlos.cc.gesact.fragments.CriterionsFragment;
 import com.carlos.cc.gesact.fragments.GroupsFragment;
+import com.carlos.cc.gesact.fragments.StudentsFragment;
+import com.carlos.cc.gesact.fragments.SubjectsFragment;
+import com.carlos.cc.gesact.model.GroupModel;
 import com.carlos.cc.gesact.services.Env;
 import com.carlos.cc.gesact.services.PreferencesService;
 import com.google.android.material.navigation.NavigationView;
@@ -45,11 +49,9 @@ public class Dashboard extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         userName = headerView.findViewById(R.id.header_title);
         userName.setText(preferencesService.getProperty(Env.USER_NAME));
-        MenuItem menuItem = navigationView.getMenu().getItem(0);
-        menuItem.setChecked(true);
-        navigationView.setCheckedItem(menuItem);
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int title;
@@ -57,25 +59,30 @@ public class Dashboard extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.menu_option_groups:
                         title = R.string.my_groups;
-                        fragment = GroupsFragment.newInstance(getString(title));
+                        fragment = GroupsFragment.newInstance();
                         break;
-                    case R.id.menu_option_grades:
-                        title = R.string.calificaciones;
-                        fragment = GroupsFragment.newInstance(getString(title));
+                    case R.id.menu_option_subjects:
+                        title = R.string.subjects;
+                        fragment = SubjectsFragment.newInstance();
                         break;
                     case R.id.menu_option_students:
                         title = R.string.alumnos;
-                        fragment = GroupsFragment.newInstance(getString(title));
+                        fragment = StudentsFragment.newInstance();
+                        break;
+                    case R.id.menu_option_criterions:
+                        title = R.string.criterions;
+                        fragment = CriterionsFragment.newInstance();
                         break;
                     default:
-                        title = 0;
+                        title = R.string.app_name;
+                        fragment = GroupsFragment.newInstance();
                 }
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.home_content, fragment)
                         .commit();
 
-
+                navigationView.setCheckedItem(item);
                 setTitle(getString(title));
 
                 drawerLayout.closeDrawer(GravityCompat.START);

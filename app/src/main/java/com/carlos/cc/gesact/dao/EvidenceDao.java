@@ -15,10 +15,10 @@ public interface EvidenceDao {
     @Query("SELECT * FROM evidencemodel")
     List<EvidenceModel> getAll();
 
-    @Query("SELECT * FROM evidencemodel JOIN studentmodel WHERE student_id = :studentId AND evidence_kind = :evidenceKind")
+    @Query("SELECT * FROM evidencemodel WHERE student_id = :studentId AND evidence_kind = :evidenceKind")
     List<EvidenceModel> getByStudentByKind(int studentId, String evidenceKind);
 
-    @Query("SELECT * FROM evidencemodel JOIN studentmodel WHERE student_id = :studentId")
+    @Query("SELECT * FROM evidencemodel WHERE student_id = :studentId")
     List<EvidenceModel> getAllByStudent(int studentId);
 
     @Query("SELECT * FROM evidencemodel WHERE evidence_id = :evidenceId LIMIT 1")

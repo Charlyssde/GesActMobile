@@ -2,11 +2,24 @@ package com.carlos.cc.gesact.model;
 
 
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class CriterionModel {
+
+    public CriterionModel(){}
+
+    public CriterionModel(String criterionName, float criterionValue, float criterionMaxValue, float criterionMinValue, SubjectModel subjectModel) {
+        this.criterionName = criterionName;
+        this.criterionValue = criterionValue;
+        this.criterionMaxValue = criterionMaxValue;
+        this.criterionMinValue = criterionMinValue;
+        this.subjectModel = subjectModel;
+    }
+
+    private static final String nul = null;
 
     @PrimaryKey (autoGenerate = true)
     public int criterionId;
@@ -22,5 +35,8 @@ public class CriterionModel {
 
     @ColumnInfo (name = "criterion_min_value")
     public float criterionMinValue;
+
+    @Embedded (prefix = "criterion")
+    public SubjectModel subjectModel;
 
 }

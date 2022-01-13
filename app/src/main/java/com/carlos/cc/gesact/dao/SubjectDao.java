@@ -15,7 +15,7 @@ public interface SubjectDao {
     @Query("SELECT * FROM subjectmodel")
     List<SubjectModel> getAll();
 
-    @Query("SELECT * FROM subjectmodel INNER JOIN groupmodel WHERE subjectgroupId = :groupId")
+    @Query("SELECT * FROM subjectmodel JOIN groupmodel WHERE subjectgroupId = :groupId")
     List<SubjectModel> getByGroup(int groupId);
 
     @Insert

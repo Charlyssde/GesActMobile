@@ -5,8 +5,18 @@ import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+
 @Entity
 public class SubjectModel {
+
+    public SubjectModel() {}
+
+    public SubjectModel(String subjectName, String subjectKind, com.carlos.cc.gesact.model.GroupModel groupModel) {
+        this.subjectName = subjectName;
+        this.subjectKind = subjectKind;
+        GroupModel = groupModel;
+    }
 
     @PrimaryKey(autoGenerate = true)
     public int subject_id;
@@ -19,8 +29,5 @@ public class SubjectModel {
 
     @Embedded (prefix = "subject")
     public GroupModel GroupModel;
-
-    @Embedded(prefix = "subject")
-    public CriterionModel CriterionModel;
 
 }

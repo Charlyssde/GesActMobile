@@ -2,7 +2,10 @@
     <string name="app_name">GesAct</string>
     <string name="register"><u>Ingresa tu nombre, sólo lo harás una vez y no tendrás que iniciar sesión nuevamente. Todos tus datos se guardarán hasta que desinstales la aplicación.</u></string>
     <string name="name">Nombre(s)</string>
-    <string name="last_name">Apellidos</string>
+    <string name="last_name">Apellido paterno</string>
+    <string name="surname">Apellido materno</string>
+    <string name="birthday">Fecha de nacimiento</string>
+    <string name="contact">Contacto familiar</string>
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="cancel">Cancelar</string>
@@ -13,4 +16,23 @@
     <string name="my_groups">Mis grupos</string>
     <string name="calificaciones">Calificaciones</string>
     <string name="alumnos">Alumnos</string>
+    <string name="criterions">Criterios de evaluacion</string>
+    <string name="add">Agregar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="group">Grupo:</string>
+    <string name="grado">Grado:</string>
+    <string name="save">Guardar</string>
+    <string name="new_element">Registrar nuevo </string>
+    <string name="edit_element">Editar </string>
+    <string name="search">Buscar...</string>
+    <string name="clear_search">Limpiar búsqueda</string>
+    <string name="delete"> Eliminar </string>
+    <string name="subjects">Materias</string>
+    <string name="registros">Registros</string>
+    <string name="kind">Tipo</string>
+    <string name="subject">Materia:</string>
+    <string name="percent_value">Valor dentro de la calificación (%)</string>
+    <string name="min_value">Valor mínimo por evidencia</string>
+    <string name="max_value">Valor máximo por evidencia</string>
 </resources>

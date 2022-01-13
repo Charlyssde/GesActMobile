@@ -20,8 +20,8 @@ public interface StudentDao {
     @Query("SELECT * FROM studentmodel")
     List<StudentModel> getAll();
 
-    @Query("SELECT * FROM studentmodel INNER JOIN groupmodel WHERE studentgroupId = :groupId ")
-    List<StudentModel> getByGroup(int groupId);
+    @Query("SELECT * FROM studentmodel INNER JOIN groupmodel WHERE studentgroupId = :studentgroupId ")
+    List<StudentModel> getByGroup(int studentgroupId);
 
     @Query("SELECT * FROM studentmodel WHERE student_id = :studentId LIMIT 1")
     StudentModel getStudent(int studentId);

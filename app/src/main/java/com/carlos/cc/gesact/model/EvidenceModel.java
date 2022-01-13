@@ -20,6 +20,9 @@ public class EvidenceModel {
     @ColumnInfo(name = "evidence_kind")
     public String evidenceKind;
 
+    @ColumnInfo(name = "evidence_grade")
+    public String evidenceGrade;
+
     @Embedded
     public StudentModel studentModel;
 
