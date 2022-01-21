@@ -4,7 +4,9 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
+import com.carlos.cc.gesact.adapters.SubjectsAdapter;
 import com.carlos.cc.gesact.model.SubjectModel;
 
 import java.util.List;
@@ -20,6 +22,9 @@ public interface SubjectDao {
 
     @Insert
     void insertAll(SubjectModel...subjectModels);
+
+    @Update
+    void update(SubjectModel subjectModel);
 
     @Query("DELETE FROM subjectmodel WHERE subject_id = :subjectId")
     void delete(int subjectId);

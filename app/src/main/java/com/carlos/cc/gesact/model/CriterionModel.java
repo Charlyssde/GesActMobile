@@ -11,9 +11,10 @@ public class CriterionModel {
 
     public CriterionModel(){}
 
-    public CriterionModel(String criterionName, float criterionValue, float criterionMaxValue, float criterionMinValue, SubjectModel subjectModel) {
+    public CriterionModel(String criterionName, float criterionValue, String criterionKind, float criterionMaxValue, float criterionMinValue, SubjectModel subjectModel) {
         this.criterionName = criterionName;
         this.criterionValue = criterionValue;
+        this.criterionKind = criterionKind;
         this.criterionMaxValue = criterionMaxValue;
         this.criterionMinValue = criterionMinValue;
         this.subjectModel = subjectModel;
@@ -29,6 +30,9 @@ public class CriterionModel {
 
     @ColumnInfo (name = "criterion_value")
     public float criterionValue;
+
+    @ColumnInfo(name = "criterion_kind")
+    public String criterionKind;
 
     @ColumnInfo (name = "criterion_max_value")
     public float criterionMaxValue;

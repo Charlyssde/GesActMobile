@@ -149,7 +149,6 @@ public class StudentsFragment extends Fragment {
                     for (int i = 0; i < grupos.size(); i++) {
                         if(option.getKey() == grupos.get(i).groupId){
                             selectedGroup = grupos.get(i);
-                            //TODO: CHANGE THIS FOR FILTER BY GROUP
                             ArrayList<StudentModel> itemsFiltered = getFilteredItems(option);
                             recyclerView.setAdapter(new StudentsAdapter(itemsFiltered, getActivity()));
                         }
@@ -179,7 +178,6 @@ public class StudentsFragment extends Fragment {
             search.clearFocus();
             InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            //TODO: CHANGE THIS FOR FILTER
             recyclerView.setAdapter(new StudentsAdapter(getSearchItem(), getActivity()));
         }
 

@@ -22,7 +22,7 @@ import com.carlos.cc.gesact.model.SubjectModel;
         GroupModel.class,
         CriterionModel.class,
         EvidenceModel.class,
-        SubjectModel.class}, version = 6)
+        SubjectModel.class}, version = 8)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "GesAct.db";

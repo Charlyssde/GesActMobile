@@ -8,7 +8,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/elemet_criterion_name"
+        android:id="@+id/element_criterion_name"
         android:drawableLeft="@drawable/ic_criterions"
         android:drawablePadding="5dp"
         android:drawableTint="@color/black"
@@ -16,16 +16,25 @@
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="@style/TextHeader.Simple"
         android:layout_width="0dp"
-        android:layout_weight="50"
+        android:layout_weight="30"
         android:layout_height="wrap_content"/>
     <TextView
-        android:id="@+id/element_value"
+        android:id="@+id/element_criterion_total_value"
         android:drawablePadding="5dp"
         android:gravity="center_vertical|end"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="@style/TextHeader.Simple"
         android:layout_width="0dp"
-        android:layout_weight="50"
+        android:layout_weight="30"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/element_criterion_subject"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical|end"
+        android:layout_margin="@dimen/text_margin"
+        android:textAppearance="@style/TextHeader.Simple"
+        android:layout_width="0dp"
+        android:layout_weight="30"
         android:layout_height="wrap_content"/>
 
 

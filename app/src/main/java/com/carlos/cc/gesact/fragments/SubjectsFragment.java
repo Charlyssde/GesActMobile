@@ -1,4 +1,4 @@
-package com.carlos.cc.gesact.fragments;
+    package com.carlos.cc.gesact.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -147,7 +147,6 @@ public class SubjectsFragment extends Fragment {
                     for (int i = 0; i < grupos.size(); i++) {
                         if(option.getKey() == grupos.get(i).groupId){
                             selectedGroup = grupos.get(i);
-                            //TODO: CHANGE THIS FOR FILTER BY GROUP
                             ArrayList<SubjectModel> itemsFiltered = getFilteredItems(option);
                             recyclerView.setAdapter(new SubjectsAdapter(itemsFiltered, getActivity()));
                         }
@@ -191,7 +190,6 @@ public class SubjectsFragment extends Fragment {
             search.clearFocus();
             InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            //TODO: CHANGE THIS FOR FILTER
             recyclerView.setAdapter(new SubjectsAdapter(getSearchItem(), getActivity()));
         }
 

@@ -39,28 +39,32 @@ public class CriterionAdapter extends RecyclerView.Adapter<CriterionAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.criterionName.setText(holder.mItem.criterionName);
-        holder.criterionValue.setText((int) holder.mItem.criterionValue);
-        holder.criterionMinValue.setText((CharSequence) holder.criterionMinValue);
-        holder.criterionMaxValue.setText((CharSequence) holder.criterionMaxValue);
+        holder.criterionValue.setText(String.valueOf(holder.mItem.criterionValue) + "%");
+        holder.criterionSubject.setText(holder.mItem.subjectModel.subjectName);
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mValues.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView criterionName, criterionValue, criterionMinValue, criterionMaxValue;
+        public final TextView criterionName, criterionValue, criterionSubject;
         public CriterionModel mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            criterionName = view.findViewById(R.id.input_criterion_name);
-            criterionValue = view.findViewById(R.id.input_criterion_value);
-            criterionMinValue = view.findViewById(R.id.input_criterion_min_value);
-            criterionMaxValue = view.findViewById(R.id.input_criterion_max_value);
+            criterionName = view.findViewById(R.id.element_criterion_name);
+            criterionValue = view.findViewById(R.id.element_criterion_total_value);
+            criterionSubject = view.findViewById(R.id.element_criterion_subject);
         }
 
         @Override

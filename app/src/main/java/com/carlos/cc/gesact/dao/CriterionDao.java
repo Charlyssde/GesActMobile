@@ -16,6 +16,9 @@ public interface CriterionDao {
     @Query("SELECT * FROM criterionmodel")
     List<CriterionModel> getAll();
 
+    @Query("SELECT * FROM criterionmodel WHERE criterionsubject_id = :criterionSubjectId")
+    List<CriterionModel> getBySubject(int criterionSubjectId);
+
     @Query("SELECT * FROM criterionmodel WHERE criterionId = :criterionId")
     CriterionModel getCriterion(int criterionId);
 

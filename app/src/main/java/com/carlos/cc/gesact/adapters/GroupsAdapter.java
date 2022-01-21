@@ -7,9 +7,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,8 +19,11 @@ import android.widget.Toast;
 import com.carlos.cc.gesact.R;
 import com.carlos.cc.gesact.database.AppDatabase;
 import com.carlos.cc.gesact.fragments.GroupsFragment;
+import com.carlos.cc.gesact.model.CriterionModel;
 import com.carlos.cc.gesact.model.GroupModel;
+import com.carlos.cc.gesact.model.SubjectModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder> {
@@ -27,6 +32,8 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
     private EditText name, grado;
     private AppDatabase database;
     private Activity activity;
+    private AlertDialog alertDialog;
+
     public GroupsAdapter(List<GroupModel> items, Activity activity) {
         mValues = items;
         this.activity = activity;
@@ -55,26 +62,6 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
     }
 
     private void onMeClick(View v,ViewHolder holder, int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.CustomTheme_Dialog);
-        builder.setPositiveButton(v.getResources().getString(R.string.save), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                updateGroup(v, holder);
-            }
-        });
-        builder.setNegativeButton(v.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        builder.setNeutralButton(v.getResources().getString(R.string.delete), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        builder.setTitle(v.getResources().getString(R.string.edit_element) + " grupo");
         LayoutInflater inflater = LayoutInflater.from(v.getContext());
         View dialogView = inflater.inflate(R.layout.layout_new_group, null);
 
@@ -83,19 +70,59 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
         name.setText(holder.mItem.groupName);
         grado.setText(holder.mItem.gradeName);
 
-        builder.setView(dialogView);
+        alertDialog = new AlertDialog.Builder(v.getContext(), R.style.CustomTheme_Dialog)
+                .setTitle(v.getResources().getString(R.string.edit_element) + " materia")
+                .setView(dialogView)
+                .setPositiveButton(v.getResources().getString(R.string.save), null)
+                .setNeutralButton(v.getResources().getString(R.string.delete), null)
+                .setNegativeButton(v.getResources().getString(R.string.cancel), null)
+                .show();
 
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        Button btnPositive, btnCancel, btnDelete;
+        btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        btnCancel = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        btnDelete = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+
+        btnPositive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateGroup(v, holder);
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteGroup(v, holder);
+            }
+        });
     }
 
-    private void updateGroup(View v, ViewHolder holder) {
-        holder.mItem.groupName = name.getText().toString();
-        holder.mItem.gradeName = grado.getText().toString();
+    private void deleteGroup(View v, ViewHolder holder) {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                database.groupDao().update(holder.mItem);
+                //TODO: DELETE ALSO THE DEPENDENCIES
+                GroupModel group = database.groupDao().getGroup(holder.mItem.groupId);
+                ArrayList<SubjectModel> subjects = (ArrayList<SubjectModel>) database.subjectDao().getByGroup(group.groupId);
+                subjects.forEach(subjectModel -> {
+                    ArrayList<CriterionModel> criterions = (ArrayList<CriterionModel>) database.criterionDao().getBySubject(subjectModel.subject_id);
+                    if(criterions.size() != 0){
+                        criterions.forEach(criterion -> {
+                            database.criterionDao().delete(criterion.criterionId);
+                        });
+                    }
+                    database.subjectDao().delete(subjectModel.subject_id);
+                });
+                database.groupDao().delete(group.groupId);
+
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -104,6 +131,32 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
                 });
             }
         });
+    }
+
+    private void updateGroup(View v, ViewHolder holder) {
+        if(emptyFields()){
+            Toast.makeText(activity, v.getResources().getString(R.string.empty_fields), Toast.LENGTH_LONG).show();
+        }else{
+            holder.mItem.groupName = name.getText().toString();
+            holder.mItem.gradeName = grado.getText().toString();
+            AsyncTask.execute(new Runnable() {
+                @Override
+                public void run() {
+                    database.groupDao().update(holder.mItem);
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            notifyDataSetChanged();
+                        }
+                    });
+                }
+            });
+            alertDialog.dismiss();
+        }
+    }
+
+    private boolean emptyFields() {
+        return name.getText().toString().equals("") || grado.getText().toString().equals("");
     }
 
     @Override

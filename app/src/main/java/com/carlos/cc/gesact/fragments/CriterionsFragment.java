@@ -297,6 +297,7 @@ public class CriterionsFragment extends Fragment {
                 @Override
                 public void run() {
                     database.criterionDao().insertAll(new CriterionModel(name.getText().toString(), Float.parseFloat(value.getText().toString()),
+                            radioSimple.isChecked() ? "simple" : "calculado" ,
                             Float.parseFloat(maxValue.getText().toString()), Float.parseFloat(minValue.getText().toString()), selectedSubject));
                     items = (ArrayList<CriterionModel>) database.criterionDao().getAll();
                     getActivity().runOnUiThread(new Runnable() {
